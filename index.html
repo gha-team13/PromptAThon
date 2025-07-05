@@ -150,3 +150,60 @@
     </script>
 </body>
 </html>
+
+<!-- Preload images for snake and food -->
+<script>
+    const snakeImg = new Image();
+    snakeImg.src = 'snake.png';
+    const foodImg = new Image();
+    foodImg.src = 'food.png';
+</script>
+<script>
+    // Override draw function to use images
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw snake
+        for (let i = 0; i < snake.length; i++) {
+            if (snakeImg.complete) {
+                ctx.drawImage(snakeImg, snake[i].x, snake[i].y, box, box);
+            } else {
+                ctx.fillStyle = i === 0 ? '#4caf50' : '#388e3c';
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            }
+            ctx.strokeStyle = '#222';
+            ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+        }
+
+        // Draw food
+        if (foodImg.complete) {
+            ctx.drawImage(foodImg, food.x, food.y, box, box);
+        } else {
+            ctx.fillStyle = '#ff5252';
+            ctx.fillRect(food.x, food.y, box, box);
+        }
+
+        // Draw score
+        document.getElementById('score').textContent = 'Score: ' + score;
+    }
+</script>
+
+
+
+<!-- Add heading above the game -->
+<script>
+    const h1 = document.createElement('h1');
+    h1.textContent = 'Anything You Can Do, I Can Do Better';
+    document.body.insertBefore(h1, document.body.firstChild);
+</script>
+
+<!-- Instructions for pushing code to GitHub from VS Code -->
+<!-- 
+1. Open the Source Control panel in VS Code (Ctrl+Shift+G or click the branch icon).
+2. If your folder is not yet a git repo, click "Initialize Repository".
+3. Stage your changes by clicking the "+" next to the files or "Stage All Changes".
+4. Enter a commit message and click the checkmark to commit.
+5. Click "Publish to GitHub" or use the command palette (Ctrl+Shift+P) and search for "Git: Publish to GitHub".
+6. Follow the prompts to create a new GitHub repo or select an existing one.
+7. After publishing, future changes can be pushed using the "Sync Changes" or "Push" button.
+-->
