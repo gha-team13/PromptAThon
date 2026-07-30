@@ -1,3 +1,4 @@
+```mermaid
 ---
 title: UC-01 — Stick-Man Use-Case Model
 config:
